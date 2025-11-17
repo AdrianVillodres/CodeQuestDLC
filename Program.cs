@@ -6,7 +6,7 @@ namespace CodeQuestDLC
         static void Main()
         {
             const string MenuTitle = "===== MAIN MENU - CODEQUEST =====";
-            const string MenuWNameTitile = "==== Welcome {0} the {1} with level {2} ====";
+            const string MenuWNameTitile = "===== Welcome {0} the {1} with level {2} =====";
             const string MenuOption1 = "1. Train your wizard";
             const string MenuOption2 = "2. Increase level";
             const string MenuOption3 = "3. Loot the mine";
