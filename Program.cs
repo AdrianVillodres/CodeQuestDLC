@@ -47,7 +47,8 @@ namespace CodeQuestDLC
                 {
                     Console.WriteLine(MenuWNameTitile, playerName, title, level);
                 }
-                Console.WriteLine(MenuOption1);                
+                Console.WriteLine(MenuOption1);
+                Console.WriteLine(MenuOption2);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
