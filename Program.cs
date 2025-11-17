@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Text;
 namespace CodeQuestDLC
 {
     class Program
     {
         static void Main()
         {
+            Console.OutputEncoding = Encoding.UTF8;
             const string MenuTitle = "===== MAIN MENU - CODEQUEST =====";
             const string MenuWNameTitile = "===== Welcome {0} the {1} with level {2} =====";
             const string MenuOption1 = "1. Train your wizard";
@@ -30,7 +32,22 @@ namespace CodeQuestDLC
             const string MageLevel3 = "Arka Nullpointer";
             const string MageLevel4 = "Elarion of Flames";
             const string MageLevel5 = "ITB-Wizard the Grey";
+            const string EnemyBattleIntroMsg = "A wild {0} appears! Rolling dice to determine the outcome of the battle...";
+            const string EnemyInfoMsg = "The {0} has {1} HP.";
+            const string NumberRolledMsg = "You rolled a {0}!";
+            const string EnemyTakesDamageMsg = "The enemy takes damage!";
+            const string EnemyDefeatedMsg = "The {0} has been defeated!";
+            const string PressKeyMsg = "Press any key to roll the dice again...";
+            const string Dice1 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n |       | |\r\n |   o   | /\r\n |       |/ \r\n '-------'\r\n";
+            const string Dice2 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n |       | |\r\n | o   o | /\r\n |       |/ \r\n '-------'\r\n";
+            const string Dice3 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n |     o | |\r\n |   o   | /\r\n | o     |/ \r\n '-------'\r\n";
+            const string Dice4 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n | o   o | |\r\n |       | /\r\n | o   o |/ \r\n '-------'\r\n";
+            const string Dice5 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n | o   o | |\r\n |   o   | /\r\n | o   o |/ \r\n '-------'\r\n";
+            const string Dice6 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n | o   o | |\r\n | o   o | /\r\n | o   o |/ \r\n '-------'\r\n";
 
+            string[] enemies = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Giant Spider 🕷️", "Iron Golem 🤖", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
+            string[] dices = {Dice1, Dice2, Dice3, Dice4, Dice5, Dice6};
+            int[] enemiesHP = {3, 5, 10, 11, 18, 15, 20, 50 };
             int op = 0;
             int power = 0;
             int randNum;
@@ -39,6 +56,10 @@ namespace CodeQuestDLC
             string playerName = "";
             string title = "";
             int level = 1;
+            string enemy;
+            int enemyHP;
+            int rolledNumber;
+            string dice;
 
             do
             {
@@ -47,7 +68,8 @@ namespace CodeQuestDLC
                 {
                     Console.WriteLine(MenuWNameTitile, playerName, title, level);
                 }
-                Console.WriteLine(MenuOption1);                
+                Console.WriteLine(MenuOption1);
+                Console.WriteLine(MenuOption2);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -145,6 +167,34 @@ namespace CodeQuestDLC
                                 title = MageLevel5;
                                 Thread.Sleep(1000);
                                 Console.WriteLine();
+                            }
+                            break;
+                        case 2:
+                            randNum = rand.Next(0, 8);
+                            enemy = enemies[randNum];
+                            enemyHP = enemiesHP[randNum];
+                            Console.WriteLine(EnemyBattleIntroMsg, enemy);
+                            Console.WriteLine(EnemyInfoMsg, enemy, enemyHP);
+                            while (enemyHP > 0)
+                            {
+                                rolledNumber = rand.Next(1, 7);
+                                dice = dices[rolledNumber - 1];
+                                Console.WriteLine(NumberRolledMsg, rolledNumber);
+                                Console.WriteLine(dice);
+                                enemyHP -= rolledNumber;
+                                if(enemyHP < 0)
+                                {
+                                    enemyHP = 0;
+                                }
+                                Console.WriteLine(EnemyTakesDamageMsg);
+                                Console.WriteLine(EnemyInfoMsg, enemy, enemyHP);
+                                Console.WriteLine(PressKeyMsg);
+                                Console.ReadKey();
+                            }
+                            Console.WriteLine(EnemyDefeatedMsg, enemy);
+                            if(level < 5)
+                            {
+                                level++;
                             }
                             break;
                     }
