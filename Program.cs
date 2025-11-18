@@ -59,6 +59,7 @@ namespace CodeQuestDLC
             const string XAxisInputMsg = "Put the X axis(0-4): ";
             const string YAxisInputMsg = "Put the Y axis(0-4): ";
             const string AxisErrorMsg = "Error, you have to put an integer number between 0 and 4";
+            const string EmptyInventory = "Your inventory is empty";
 
             string[] enemies = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Giant Spider 🕷️", "Iron Golem 🤖", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
             string[] dices = {Dice1, Dice2, Dice3, Dice4, Dice5, Dice6};
@@ -82,6 +83,7 @@ namespace CodeQuestDLC
             int digYAxis;
             string[,] map = new string[ROWS, COLS];
             string[,] hiddenMap = new string[ROWS, COLS];
+            string[] inventory = new string[4];
 
             do
             {
@@ -93,6 +95,7 @@ namespace CodeQuestDLC
                 Console.WriteLine(MenuOption1);
                 Console.WriteLine(MenuOption2);
                 Console.WriteLine(MenuOption3);
+                Console.WriteLine(MenuOption4);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -340,6 +343,8 @@ namespace CodeQuestDLC
                             {
                                 Console.WriteLine(NotEnoughBitcoins);
                             }
+                            break;
+                        case 4:
                             break;
                     }
                 }
