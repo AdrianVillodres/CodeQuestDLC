@@ -62,8 +62,8 @@ namespace CodeQuestDLC
             const string EmptyInventory = "Your inventory is empty";
 
             string[] enemies = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Giant Spider 🕷️", "Iron Golem 🤖", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
-            string[] dices = {Dice1, Dice2, Dice3, Dice4, Dice5, Dice6};
-            int[] enemiesHP = {3, 5, 10, 11, 18, 15, 20, 50 };
+            string[] dices = { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6 };
+            int[] enemiesHP = { 3, 5, 10, 11, 18, 15, 20, 50 };
             int op = 0;
             int power = 0;
             int randNum;
@@ -83,7 +83,7 @@ namespace CodeQuestDLC
             int digYAxis;
             string[,] map = new string[ROWS, COLS];
             string[,] hiddenMap = new string[ROWS, COLS];
-            string[] inventory = new string[4];
+            string[] inventory = new string[0];
 
             do
             {
@@ -208,7 +208,7 @@ namespace CodeQuestDLC
                                 Console.WriteLine(NumberRolledMsg, rolledNumber);
                                 Console.WriteLine(dice);
                                 enemyHP -= rolledNumber;
-                                if(enemyHP < 0)
+                                if (enemyHP < 0)
                                 {
                                     enemyHP = 0;
                                 }
@@ -218,7 +218,7 @@ namespace CodeQuestDLC
                                 Console.ReadKey();
                             }
                             Console.WriteLine(EnemyDefeatedMsg, enemy);
-                            if(level < 5)
+                            if (level < 5)
                             {
                                 level++;
                             }
@@ -231,9 +231,9 @@ namespace CodeQuestDLC
                             digXAxis = 0;
                             digYAxis = 0;
                             Console.WriteLine(IntroductionMessageC3);
-                            for(int i = 0; i < map.GetLength(0); i++)
+                            for (int i = 0; i < map.GetLength(0); i++)
                             {
-                                for(int j = 0; j < map.GetLength(1); j++)
+                                for (int j = 0; j < map.GetLength(1); j++)
                                 {
                                     map[i, j] = NotDigged;
                                 }
@@ -243,19 +243,19 @@ namespace CodeQuestDLC
                                 for (int j = 0; j < hiddenMap.GetLength(1); j++)
                                 {
                                     randNum = rand.Next(1, 4);
-                                    if(randNum == 2)
+                                    if (randNum == 2)
                                     {
                                         hiddenMap[i, j] = Coin;
                                     }
                                     else
                                     {
                                         hiddenMap[i, j] = Cross;
-                                    }          
+                                    }
                                 }
                                 Console.WriteLine();
                             }
-                            
-                            while(digCounter > 0)
+
+                            while (digCounter > 0)
                             {
                                 for (int i = 0; i < map.GetLength(0); i++)
                                 {
@@ -332,8 +332,8 @@ namespace CodeQuestDLC
                                 else
                                 {
                                     Console.WriteLine(AxisErrorMsg);
-                                }                                   
-                                
+                                }
+
                             }
                             if (bitcoinCounter > 200)
                             {
@@ -345,6 +345,19 @@ namespace CodeQuestDLC
                             }
                             break;
                         case 4:
+
+
+                            if (inventory.Length == 0)
+                            {
+                                Console.WriteLine(EmptyInventory);
+                            }
+                            else
+                            {
+                                for (int i = 0; i < inventory.Length; i++)
+                                {
+                                    Console.WriteLine(inventory[i]);
+                                }
+                            }
                             break;
                     }
                 }
