@@ -60,6 +60,12 @@ namespace CodeQuestDLC
             const string YAxisInputMsg = "Put the Y axis(0-4): ";
             const string AxisErrorMsg = "Error, you have to put an integer number between 0 and 4";
             const string EmptyInventory = "Your inventory is empty";
+            const string ShopGreetingMsg = "Welcome to the shop! We have all of this!";
+            const string ShopOptionMsg = "Select from 1 to 5 to buy an item, 0 to exit";
+            const string ShopError = "Sorry, we don't have that, select an integer number beetwen 0 and 5";
+            const string BitsAvailableMsg = "You have {0} bits available";
+            const string ShopExitMsg = "Thanks for coming!";
+            const string NotEnoughMoneyMsg = "You don't have enough money to buy that";
 
             string[] enemies = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Giant Spider 🕷️", "Iron Golem 🤖", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
             string[] dices = { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6 };
@@ -76,14 +82,19 @@ namespace CodeQuestDLC
             int enemyHP;
             int rolledNumber;
             string dice;
-            int bitcoinCounter;
+            int bitcoinCounter = 0;
             int bitcoinFound;
             int digCounter;
             int digXAxis;
             int digYAxis;
             string[,] map = new string[ROWS, COLS];
             string[,] hiddenMap = new string[ROWS, COLS];
-            string[] inventory = new string[0];
+            string[] inventory = { };
+            string[] shopItems = {"Iron Dagger 🗡️", "Healing Potion ⚗️", "Ancient Key 🗝️", "Crossbow 🏹", "Metal Shield 🛡️"};
+            int[] prices = {30, 10, 50, 40, 20};
+            string ShopObjectTitle = ("Object");
+            string ShopPricesTitle = ("Prices(bits)");
+            int itemInput;
 
             do
             {
@@ -96,6 +107,7 @@ namespace CodeQuestDLC
                 Console.WriteLine(MenuOption2);
                 Console.WriteLine(MenuOption3);
                 Console.WriteLine(MenuOption4);
+                Console.WriteLine(MenuOption5);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -225,7 +237,6 @@ namespace CodeQuestDLC
                             break;
                         case 3:
                             digCounter = 5;
-                            bitcoinCounter = 0;
                             bitcoinFound = 0;
                             validInput = true;
                             digXAxis = 0;
@@ -345,8 +356,6 @@ namespace CodeQuestDLC
                             }
                             break;
                         case 4:
-
-
                             if (inventory.Length == 0)
                             {
                                 Console.WriteLine(EmptyInventory);
@@ -359,10 +368,71 @@ namespace CodeQuestDLC
                                 }
                             }
                             break;
+                        case 5:
+                            itemInput = 1;
+                            validInput = true;
+                            Console.WriteLine(ShopGreetingMsg);
+                            while (itemInput != 0)
+                            {
+                                Console.WriteLine(BitsAvailableMsg, bitcoinCounter);
+                                Console.WriteLine(ShopOptionMsg);
+                                Console.WriteLine(ShopObjectTitle.PadRight(17) + ShopPricesTitle);
+                                for (int i = 0; i < shopItems.Length; i++)
+                                {
+                                    Console.WriteLine(shopItems[i].PadRight(20) + prices[i].ToString().PadRight(10));
+                                }
+                                try
+                                {
+                                    itemInput = Convert.ToInt32(Console.ReadLine());
+
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine(ShopError);
+                                    validInput = false;
+                                }
+                                catch (OverflowException)
+                                {
+                                    Console.WriteLine(ShopError);
+                                    validInput = false;
+                                }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine(ShopError);
+                                    validInput = false;
+                                }
+                                if (validInput && itemInput > 0 && itemInput <= 5)
+                                {
+                                    itemInput--;                          
+                                    if (bitcoinCounter >= prices[itemInput])
+                                    {
+                                        bitcoinCounter -= prices[itemInput];
+                                        string[] newInventory = new string[inventory.GetLength(0) + 1];
+                                        for (int i = 0; i < inventory.GetLength(0); i++)
+                                        {
+                                            newInventory[i] = inventory[i];
+                                        }
+                                        newInventory[newInventory.GetLength(0) - 1] = shopItems[itemInput];
+                                        inventory = newInventory;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(NotEnoughMoneyMsg);
+                                    }
+                                }
+                                else if (validInput && itemInput == 0)
+                                {
+                                    Console.WriteLine(ShopExitMsg);
+                                }
+                                else
+                                {
+                                    Console.WriteLine(ShopError);
+                                }
+                            }
+
+                                break;
                     }
                 }
-
-
             } while (op != 0);
         }
     }
