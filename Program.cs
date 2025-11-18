@@ -4,6 +4,7 @@ namespace CodeQuestDLC
 {
     class Program
     {
+        // para la array temporal mas grande crear una array con la lenght the la anterior +1
         static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -44,6 +45,20 @@ namespace CodeQuestDLC
             const string Dice4 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n | o   o | |\r\n |       | /\r\n | o   o |/ \r\n '-------'\r\n";
             const string Dice5 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n | o   o | |\r\n |   o   | /\r\n | o   o |/ \r\n '-------'\r\n";
             const string Dice6 = "   ________\r\n  /       /|   \r\n /_______/ |\r\n | o   o | |\r\n | o   o | /\r\n | o   o |/ \r\n '-------'\r\n";
+            const string IntroductionMessageC3 = "Congratulations, You are a true Dragonslayer. Now, you are in front of a bitcoin mine. You have to dig and collect the bitcoins, but maybe you will find no bitcoins, so be careful! ";
+            const string NotFoundBitcoins = "Today's not your lucky day, you found 0 bitcoins";
+            const string EnoughBitcoins = "You’ve unlocked the gold GPU! Your spells now run at 120 FPS!";
+            const string NotEnoughBitcoins = "Your magic card is still integrated. It's time to defeat another dragon!";
+            const string MsgBitcoins = "Nice! You found {0} bitcoins";
+            const int ROWS = 5;
+            const int COLS = 5;
+            const string NotDigged = "➖";
+            const string Coin = "🪙";
+            const string Cross = "❌";
+            const string BeginDiggingMsg = "You have {0} tries to dig for bitcoins";
+            const string XAxisInputMsg = "Put the X axis(0-4): ";
+            const string YAxisInputMsg = "Put the Y axis(0-4): ";
+            const string AxisErrorMsg = "Error, you have to put an integer number between 0 and 4";
 
             string[] enemies = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Giant Spider 🕷️", "Iron Golem 🤖", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
             string[] dices = {Dice1, Dice2, Dice3, Dice4, Dice5, Dice6};
@@ -60,6 +75,13 @@ namespace CodeQuestDLC
             int enemyHP;
             int rolledNumber;
             string dice;
+            int bitcoinCounter;
+            int bitcoinFound;
+            int digCounter;
+            int digXAxis;
+            int digYAxis;
+            string[,] map = new string[ROWS, COLS];
+            string[,] hiddenMap = new string[ROWS, COLS];
 
             do
             {
@@ -70,6 +92,7 @@ namespace CodeQuestDLC
                 }
                 Console.WriteLine(MenuOption1);
                 Console.WriteLine(MenuOption2);
+                Console.WriteLine(MenuOption3);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -195,6 +218,127 @@ namespace CodeQuestDLC
                             if(level < 5)
                             {
                                 level++;
+                            }
+                            break;
+                        case 3:
+                            digCounter = 5;
+                            bitcoinCounter = 0;
+                            bitcoinFound = 0;
+                            validInput = true;
+                            digXAxis = 0;
+                            digYAxis = 0;
+                            Console.WriteLine(IntroductionMessageC3);
+                            for(int i = 0; i < map.GetLength(0); i++)
+                            {
+                                for(int j = 0; j < map.GetLength(1); j++)
+                                {
+                                    map[i, j] = NotDigged;
+                                }
+                            }
+                            for (int i = 0; i < hiddenMap.GetLength(0); i++)
+                            {
+                                for (int j = 0; j < hiddenMap.GetLength(1); j++)
+                                {
+                                    randNum = rand.Next(1, 4);
+                                    if(randNum == 2)
+                                    {
+                                        hiddenMap[i, j] = Coin;
+                                    }
+                                    else
+                                    {
+                                        hiddenMap[i, j] = Cross;
+                                    }          
+                                }
+                                Console.WriteLine();
+                            }
+                            
+                            while(digCounter > 0)
+                            {
+                                for (int i = 0; i < map.GetLength(0); i++)
+                                {
+                                    for (int j = 0; j < map.GetLength(1); j++)
+                                    {
+                                        Console.Write(map[i, j]);
+                                    }
+                                    Console.WriteLine();
+                                }
+                                Console.WriteLine(BeginDiggingMsg, digCounter);
+                                Console.WriteLine(XAxisInputMsg);
+                                try
+                                {
+                                    digXAxis = Int32.Parse(Console.ReadLine());
+                                }
+                                catch (OverflowException)
+                                {
+                                    Console.WriteLine(AxisErrorMsg);
+                                    validInput = false;
+                                }
+                                catch (FormatException)
+                                {
+                                    Console.WriteLine(AxisErrorMsg);
+                                    validInput = false;
+                                }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine(AxisErrorMsg);
+                                    validInput = false;
+                                }
+                                if (validInput && digXAxis >= 0 && digXAxis <= 4)
+                                {
+                                    Console.WriteLine(YAxisInputMsg);
+                                    try
+                                    {
+                                        digYAxis = Int32.Parse(Console.ReadLine());
+                                    }
+                                    catch (OverflowException)
+                                    {
+                                        Console.WriteLine(AxisErrorMsg);
+                                        validInput = false;
+                                    }
+                                    catch (FormatException)
+                                    {
+                                        Console.WriteLine(AxisErrorMsg);
+                                        validInput = false;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        Console.WriteLine(AxisErrorMsg);
+                                        validInput = false;
+                                    }
+                                    if (validInput && digYAxis >= 0 && digYAxis <= 4)
+                                    {
+                                        if (hiddenMap[digXAxis, digYAxis].Contains(Coin))
+                                        {
+                                            bitcoinFound = rand.Next(5, 51);
+                                            bitcoinCounter += bitcoinFound;
+                                            map[digXAxis, digYAxis] = Coin;
+                                            Console.WriteLine(MsgBitcoins, bitcoinFound);
+                                        }
+                                        else
+                                        {
+                                            map[digXAxis, digYAxis] = Cross;
+                                            Console.WriteLine(NotFoundBitcoins);
+                                        }
+                                        digCounter--;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine(AxisErrorMsg);
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine(AxisErrorMsg);
+                                }                                   
+                                
+                            }
+                            if (bitcoinCounter > 200)
+                            {
+                                Console.WriteLine(EnoughBitcoins);
+                            }
+                            else
+                            {
+                                Console.WriteLine(NotEnoughBitcoins);
                             }
                             break;
                     }
