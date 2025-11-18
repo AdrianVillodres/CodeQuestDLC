@@ -18,7 +18,7 @@ namespace CodeQuestDLC
             const string MenuOption6 = "6. Show attacks by level";
             const string MenuOption7 = "7. Decode ancient Scroll";
             const string MenuOptionExit = "0. Exit game";
-            const string MenuPrompt = "Choose an option (1-3) - (0) to exit: ";
+            const string MenuPrompt = "Choose an option (1-7) - (0) to exit: ";
             const string InputErrorMessage = "Invalid input. Please enter a number between 0 and 3.";
             const string IntroductionMessageC1 = "Hey you! You're finally awake. Rise and shine! Its your first day in the academy. You will learn about the arcane arts and alchemy. But first things first, what's your name?";
             const string TrainingMessageC1 = "Alright! Let's go. Before you can go outside the academy, you must train your mind and spells. So you will need to meditate for 5 days. I recommend you do it from 1 to 10 hours, the choice is yours. See you in five days. Good luck!";
@@ -108,6 +108,7 @@ namespace CodeQuestDLC
                 Console.WriteLine(MenuOption3);
                 Console.WriteLine(MenuOption4);
                 Console.WriteLine(MenuOption5);
+                Console.WriteLine(MenuOption6);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -429,8 +430,9 @@ namespace CodeQuestDLC
                                     Console.WriteLine(ShopError);
                                 }
                             }
-
                                 break;
+                        case 6:
+                            break;
                     }
                 }
             } while (op != 0);
