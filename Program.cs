@@ -4,6 +4,7 @@ namespace CodeQuestDLC
 {
     class Program
     {
+        // para la array temporal mas grande crear una array con la lenght the la anterior +1
         static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
@@ -60,6 +61,8 @@ namespace CodeQuestDLC
             int enemyHP;
             int rolledNumber;
             string dice;
+            int bitcoinCounter;
+            int bitcoinFound;
 
             do
             {
@@ -70,6 +73,7 @@ namespace CodeQuestDLC
                 }
                 Console.WriteLine(MenuOption1);
                 Console.WriteLine(MenuOption2);
+                Console.WriteLine(MenuOption3);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -195,6 +199,33 @@ namespace CodeQuestDLC
                             if(level < 5)
                             {
                                 level++;
+                            }
+                            break;
+                        case 3:
+                            bitcoinCounter = 0;
+                            Console.WriteLine(IntroductionMessageC3);
+                            for (int i = 0; i < 5; i++)
+                            {
+                                bitcoinFound = rand.Next(0, 51);
+                                Console.WriteLine(MsgBitcoins, bitcoinFound);
+                                if (bitcoinFound >= 5)
+                                {
+                                    bitcoinCounter += bitcoinFound;
+                                    Thread.Sleep(1000);
+                                }
+                                else
+                                {
+                                    Console.WriteLine(NotFoundBitcoins);
+                                    Thread.Sleep(1000);
+                                }
+                            }
+                            if (bitcoinCounter > 200)
+                            {
+                                Console.WriteLine(EnoughBitcoins);
+                            }
+                            else
+                            {
+                                Console.WriteLine(NotEnoughBitcoins);
                             }
                             break;
                     }
