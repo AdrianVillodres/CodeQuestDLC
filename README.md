@@ -1,3 +1,7 @@
+#Code Quest DLC
+
+This activity is an amplification of a previous activity named Code Quest. Here, I expanded the functionalities of the activity, making possible for the mage to upgrade his level, making a better bitcoin diggin system, adding an inventory wich can be filled buying in the new shop added, also you can watch your attacks based in the level of your mage and you can decipher ancient scrolls. All of this was done using arrays, matrix and jagged arrays.
+
 # Chapter 1
 
 **Test case 1: op = 1, name = Adrian**
@@ -42,6 +46,7 @@
 | 2 | 3 | 2 | 3 | Ember Wolf | 0 | 4 | FourDice | enemy HP <= 0 = true |
 | 3 | - | 2 | 3 | Ember Wolf | 0 | 4 | FourDice | Output = "The Ember Wolf has been defeated!" |
 
+Limit and error cases are the same as chapter 1
 ---
 
 # Chapter 3
@@ -99,6 +104,7 @@
 | 1 | - | 4 | ["iron dagger"] | inventory.length == 0 = true |
 | 2 | 1 | 4 | ["iron dagger"] | output = "iron dagger" |
 
+Error case impossible
 ---
 
 # Chapter 5
@@ -116,8 +122,8 @@
 | #Instruction | #Iteration | op | itemInput | validInput | bitcoinCounter | prices[] | inventory | newInventory[] | condition |
 |--------------|------------|----|-----------|------------|----------------|----------|-----------|----------------|-----------|
 | 1 | - | 5 | 1 | true | 0 | prices[itemInput]=30 | null | null | validInput && itemInput >0 && itemInput <=5 = true |
-| 1 | - | 5 | 1 | true | 0 | prices[itemInput]=30 | null | null | bitcoinCounter >= prices[itemInput] = false |
-| 1 | - | 5 | 1 | true | 0 | prices[itemInput]=30 | null | null | Output = "You don't have enough bitcoins" |
+| 2 | - | 5 | 1 | true | 0 | prices[itemInput]=30 | null | null | bitcoinCounter >= prices[itemInput] = false |
+| 3 | - | 5 | 1 | true | 0 | prices[itemInput]=30 | null | null | Output = "You don't have enough bitcoins" |
 
 **Test case 3: op = 5, bitcoinCounter = 0, itemInput = 15**
 
@@ -138,6 +144,8 @@
 | 2 | 1 | 6 | 2 | Output = "Fireball" |
 | 2 | 2 | 6 | 2 | Output = "Ice ray" |
 | 2 | 3 | 6 | 2 | Output = "Arcane shield" |
+
+Always be level 1 at least so no error or limit cases
 
 # Chapter 7
 
