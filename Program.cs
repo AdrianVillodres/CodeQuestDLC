@@ -75,6 +75,7 @@ namespace CodeQuestDLC
                     switch (op)
                     {
                         case 1:
+                            totalpower = 0;
                             Console.WriteLine(IntroductionMessageC1);
                             playerName = Console.ReadLine();
                             for (int i = 0; i < playerName.Length; i++)
