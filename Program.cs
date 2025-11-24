@@ -9,7 +9,7 @@ namespace CodeQuestDLC
         {
             Console.OutputEncoding = Encoding.UTF8;
             const string MenuTitle = "===== MAIN MENU - CODEQUEST =====";
-            const string MenuWNameTitile = "===== Welcome {0} the {1} with level {2} =====";
+            const string MenuNameTitle = "===== Welcome {0} the {1} with level {2} =====";
             const string MenuOption1 = "1. Train your wizard";
             const string MenuOption2 = "2. Increase level";
             const string MenuOption3 = "3. Loot the mine";
@@ -67,12 +67,26 @@ namespace CodeQuestDLC
             const string ShopExitMsg = "Thanks for coming!";
             const string NotEnoughMoneyMsg = "You don't have enough money to buy that";
             const string AvailableAttacksMsg = "Available attacks for level {0}:";
+            const string IntroMsgCh7 = "You found an ancient scroll with encrypted messages!";
+            const string ScrollsToDecode = "Scrolls to decode: ";
+            const string FirstScroll = "The 🐲 sleeps in the mountain of fire 🔥";
+            const string SecondScroll = "Ancient magic flows through the crystal caves";
+            const string ThirdScroll = "Spell: Ignis 5 🔥, Aqua 6 💧, Terra 3 🌍, Ventus 8 🌪️";
+            const string ScrollOperation = "Choose a decoding operation:";
+            const string DecipherSpell = "Decipher spell (remove spaces)";
+            const string CountRunes = "Count magical runes (vowels)";
+            const string ExtractCode = "Extract secret code (numbers)";
+            const string ScrollSelectionErrorMsg = "Error, you must put a integer number between 1 and 3";
+            const string FirstScrollDone = "The first scroll says: {0}";
+            const string SecondScrollDone = "The second scroll have {0} bowels";
+            const string ThirdScrollDone = "The secret code is: ";
 
             string[] enemies = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Giant Spider 🕷️", "Iron Golem 🤖", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
             string[] dices = { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6 };
             int[] enemiesHP = { 3, 5, 10, 11, 18, 15, 20, 50 };
             int op = 0;
             int power = 0;
+            int totalpower = 0;
             int randNum;
             bool validInput;
             var rand = new Random();
@@ -96,21 +110,23 @@ namespace CodeQuestDLC
             string ShopObjectTitle = ("Object");
             string ShopPricesTitle = ("Prices(bits)");
             int itemInput;
-            string[][] attacks = new string[][]
-            {
-                new string[] { "Magic Spark 💫" },
-                new string[] { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" },
-                new string[] { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" },
-                new string[] { "Wave of Light ⚜️", "Storm of Wings 🐦" },
-                new string[] { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }
-            };
+            string[] lvl1Attacks = { "Magic Spark 💫" };
+            string[] lvl2Attacks = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" };
+            string[] lvl3Attacks = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" };
+            string[] lvl4Attacks = { "Wave of Light ⚜️", "Storm of Wings 🐦" };
+            string[] lvl5Attacks = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" };
+            int scrollDecode = 0;
+            string firstScrollDecoded;
+            int secondScrollDecoded;
+            char[] thirdScrollDecoded = new char[4];
+            int arrayNumber;
 
             do
             {
                 Console.WriteLine(MenuTitle);
                 if (playerName.CompareTo("") != 0)
                 {
-                    Console.WriteLine(MenuWNameTitile, playerName, title, level);
+                    Console.WriteLine(MenuNameTitle, playerName, title, level);
                 }
                 Console.WriteLine(MenuOption1);
                 Console.WriteLine(MenuOption2);
@@ -118,6 +134,7 @@ namespace CodeQuestDLC
                 Console.WriteLine(MenuOption4);
                 Console.WriteLine(MenuOption5);
                 Console.WriteLine(MenuOption6);
+                Console.WriteLine(MenuOption7);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -160,13 +177,14 @@ namespace CodeQuestDLC
                             for (int ctr = 0; ctr <= 4; ctr++)
                             {
                                 randNum = rand.Next(1, 25);
-                                power += rand.Next(1, 11);
-                                Console.WriteLine($"Today I meditated for {randNum} hours! My power might increase to {power}!");
+                                power = rand.Next(1, 11);
+                                totalpower += power;
+                                Console.WriteLine($"Today I meditated for {randNum} hours! My power might increase to {power}!, my total power is {totalpower}");
                                 Thread.Sleep(1000);
                             }
                             Console.WriteLine(TrainingCompleteMessageC1);
                             Thread.Sleep(2000);
-                            if (power < 20)
+                            if (totalpower < 20)
                             {
                                 Console.WriteLine(TrainingResultMessageC1_1);
                                 Thread.Sleep(1000);
@@ -176,7 +194,7 @@ namespace CodeQuestDLC
                                 Thread.Sleep(1000);
                                 Console.WriteLine();
                             }
-                            else if (power >= 20 && power < 30)
+                            else if (totalpower >= 20 && totalpower < 30)
                             {
                                 Console.WriteLine(TrainingResultMessageC1_2);
                                 Thread.Sleep(1000);
@@ -186,7 +204,7 @@ namespace CodeQuestDLC
                                 Thread.Sleep(1000);
                                 Console.WriteLine();
                             }
-                            else if (power >= 30 && power < 35)
+                            else if (totalpower >= 30 && totalpower < 35)
                             {
                                 Console.WriteLine(TrainingResultMessageC1_3);
                                 Thread.Sleep(1000);
@@ -196,7 +214,7 @@ namespace CodeQuestDLC
                                 Thread.Sleep(1000);
                                 Console.WriteLine();
                             }
-                            else if (power >= 35 && power < 40)
+                            else if (totalpower >= 35 && totalpower < 40)
                             {
                                 Console.WriteLine(TrainingResultMessageC1_4);
                                 Thread.Sleep(1000);
@@ -273,8 +291,8 @@ namespace CodeQuestDLC
                                         hiddenMap[i, j] = Cross;
                                     }
                                 }
-                                Console.WriteLine();
                             }
+                                Console.WriteLine();
 
                             while (digCounter > 0)
                             {
@@ -456,8 +474,76 @@ namespace CodeQuestDLC
                             }
                             Console.WriteLine();
                             break;
+                        case 7:
+                            Console.WriteLine(IntroMsgCh7);
+                            Console.WriteLine();
+                            Console.WriteLine(ScrollsToDecode);
+                            Console.WriteLine(FirstScroll);
+                            Console.WriteLine(SecondScroll);
+                            Console.WriteLine(ThirdScroll);
+                            Console.WriteLine(ScrollOperation);
+                            Console.WriteLine(DecipherSpell);
+                            Console.WriteLine(CountRunes);
+                            Console.WriteLine(ExtractCode);
+                            try
+                            {
+                                scrollDecode = Convert.ToInt32(Console.ReadLine());
+
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine(ScrollSelectionErrorMsg);
+                                validInput = false;
+                            }
+                            catch (OverflowException)
+                            {
+                                Console.WriteLine(ScrollSelectionErrorMsg);
+                                validInput = false;
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine(ScrollSelectionErrorMsg);
+                                validInput = false;
+                            }
+                            if (scrollDecode < 1 || scrollDecode > 3)
+                            {
+                                validInput = false;
+                            }
+                            if (validInput == true)
+                            {
+                                switch (scrollDecode)
+                                {
+                                    case 1:
+                                        firstScrollDecoded = FirstScroll.Replace(" ", "");
+                                        Console.WriteLine(FirstScrollDone,firstScrollDecoded);
+                                        break;
+                                    case 2:
+                                        secondScrollDecoded = SecondScroll.Length;
+                                        Console.WriteLine(SecondScrollDone,secondScrollDecoded);
+                                        break;
+                                    case 3:
+                                        arrayNumber = 0;
+                                        char[] thirdScrollLetters = ThirdScroll.ToCharArray();
+                                        for(int i = 0; i < thirdScrollLetters.GetLength(0); i++)
+                                        {
+                                            if (char.IsDigit(thirdScrollLetters[i]))
+                                            {
+                                                thirdScrollDecoded[arrayNumber] = thirdScrollLetters[i];
+                                                arrayNumber++;
+                                            }
+                                        }
+                                        Console.WriteLine(ThirdScrollDone);
+                                        for (int i = 0; i < arrayNumber; i++)
+                                        {
+                                            Console.Write(thirdScrollDecoded[i]);
+                                        }
+                                        break;
+                                }
+                                Console.WriteLine();
+                            }
+                            break;
                     }
-                    Console.WriteLine();
+                    
                 }
             } while (op != 0);
         }
