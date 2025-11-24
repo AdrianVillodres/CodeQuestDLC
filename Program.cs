@@ -184,7 +184,7 @@ namespace CodeQuestDLC
                             }
                             Console.WriteLine(TrainingCompleteMessageC1);
                             Thread.Sleep(2000);
-                            if (power < 20)
+                            if (totalpower < 20)
                             {
                                 Console.WriteLine(TrainingResultMessageC1_1);
                                 Thread.Sleep(1000);
@@ -194,7 +194,7 @@ namespace CodeQuestDLC
                                 Thread.Sleep(1000);
                                 Console.WriteLine();
                             }
-                            else if (power >= 20 && power < 30)
+                            else if (totalpower >= 20 && totalpower < 30)
                             {
                                 Console.WriteLine(TrainingResultMessageC1_2);
                                 Thread.Sleep(1000);
@@ -204,7 +204,7 @@ namespace CodeQuestDLC
                                 Thread.Sleep(1000);
                                 Console.WriteLine();
                             }
-                            else if (power >= 30 && power < 35)
+                            else if (totalpower >= 30 && totalpower < 35)
                             {
                                 Console.WriteLine(TrainingResultMessageC1_3);
                                 Thread.Sleep(1000);
@@ -214,7 +214,7 @@ namespace CodeQuestDLC
                                 Thread.Sleep(1000);
                                 Console.WriteLine();
                             }
-                            else if (power >= 35 && power < 40)
+                            else if (totalpower >= 35 && totalpower < 40)
                             {
                                 Console.WriteLine(TrainingResultMessageC1_4);
                                 Thread.Sleep(1000);
