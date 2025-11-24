@@ -115,6 +115,7 @@ namespace CodeQuestDLC
                 Console.WriteLine(MenuOption4);
                 Console.WriteLine(MenuOption5);
                 Console.WriteLine(MenuOption6);
+                Console.WriteLine(MenuOption7);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -474,9 +475,12 @@ namespace CodeQuestDLC
                                     }
                                     break;
                             }
+                            Console.WriteLine();
+                            break;
+                        case 7:
                             break;
                     }
-                    Console.WriteLine();
+                    
                 }
             } while (op != 0);
         }
