@@ -475,7 +475,6 @@ namespace CodeQuestDLC
                                     break;
                             }
                             break;
-
                     }
                     Console.WriteLine();
                 }
