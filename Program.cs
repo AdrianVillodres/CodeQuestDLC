@@ -67,6 +67,19 @@ namespace CodeQuestDLC
             const string ShopExitMsg = "Thanks for coming!";
             const string NotEnoughMoneyMsg = "You don't have enough money to buy that";
             const string AvailableAttacksMsg = "Available attacks for level {0}:";
+            const string IntroMsgCh7 = "You found an ancient scroll with encrypted messages!";
+            const string ScrollsToDecode = "Scrolls to decode: ";
+            const string FirstScroll = "The 🐲 sleeps in the mountain of fire 🔥";
+            const string SecondScroll = "Ancient magic flows through the crystal caves";
+            const string ThirdScroll = "Spell: Ignis 5 🔥, Aqua 6 💧, Terra 3 🌍, Ventus 8 🌪️";
+            const string ScrollOperation = "Choose a decoding operation:";
+            const string DecipherSpell = "Decipher spell (remove spaces)";
+            const string CountRunes = "Count magical runes (vowels)";
+            const string ExtractCode = "Extract secret code (numbers)";
+            const string ScrollSelectionErrorMsg = "Error, you must put a integer number between 1 and 3";
+            const string FirstScrollDone = "The first scroll says: {0}";
+            const string SecondScrollDone = "The second scroll have {0} bowels";
+            const string ThirdScrollDone = "The secret code is: ";
 
             string[] enemies = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Giant Spider 🕷️", "Iron Golem 🤖", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
             string[] dices = { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6 };
@@ -101,6 +114,11 @@ namespace CodeQuestDLC
             string[] lvl3Attacks = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" };
             string[] lvl4Attacks = { "Wave of Light ⚜️", "Storm of Wings 🐦" };
             string[] lvl5Attacks = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" };
+            int scrollDecode = 0;
+            string firstScrollDecoded;
+            int secondScrollDecoded;
+            char[] thirdScrollDecoded = new char[4];
+            int arrayNumber;
 
             do
             {
@@ -271,8 +289,8 @@ namespace CodeQuestDLC
                                         hiddenMap[i, j] = Cross;
                                     }
                                 }
-                                Console.WriteLine();
                             }
+                                Console.WriteLine();
 
                             while (digCounter > 0)
                             {
@@ -478,6 +496,72 @@ namespace CodeQuestDLC
                             Console.WriteLine();
                             break;
                         case 7:
+                            Console.WriteLine(IntroMsgCh7);
+                            Console.WriteLine();
+                            Console.WriteLine(ScrollsToDecode);
+                            Console.WriteLine(FirstScroll);
+                            Console.WriteLine(SecondScroll);
+                            Console.WriteLine(ThirdScroll);
+                            Console.WriteLine(ScrollOperation);
+                            Console.WriteLine(DecipherSpell);
+                            Console.WriteLine(CountRunes);
+                            Console.WriteLine(ExtractCode);
+                            try
+                            {
+                                scrollDecode = Convert.ToInt32(Console.ReadLine());
+
+                            }
+                            catch (FormatException)
+                            {
+                                Console.WriteLine(ScrollSelectionErrorMsg);
+                                validInput = false;
+                            }
+                            catch (OverflowException)
+                            {
+                                Console.WriteLine(ScrollSelectionErrorMsg);
+                                validInput = false;
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine(ScrollSelectionErrorMsg);
+                                validInput = false;
+                            }
+                            if (scrollDecode < 1 || scrollDecode > 3)
+                            {
+                                validInput = false;
+                            }
+                            if (validInput == true)
+                            {
+                                switch (scrollDecode)
+                                {
+                                    case 1:
+                                        firstScrollDecoded = FirstScroll.Replace(" ", "");
+                                        Console.WriteLine(FirstScrollDone,firstScrollDecoded);
+                                        break;
+                                    case 2:
+                                        secondScrollDecoded = SecondScroll.Length;
+                                        Console.WriteLine(SecondScrollDone,secondScrollDecoded);
+                                        break;
+                                    case 3:
+                                        arrayNumber = 0;
+                                        char[] thirdScrollLetters = ThirdScroll.ToCharArray();
+                                        for(int i = 0; i < thirdScrollLetters.GetLength(0); i++)
+                                        {
+                                            if (char.IsDigit(thirdScrollLetters[i]))
+                                            {
+                                                thirdScrollDecoded[arrayNumber] = thirdScrollLetters[i];
+                                                arrayNumber++;
+                                            }
+                                        }
+                                        Console.WriteLine(ThirdScrollDone);
+                                        for (int i = 0; i < arrayNumber; i++)
+                                        {
+                                            Console.Write(thirdScrollDecoded[i]);
+                                        }
+                                        break;
+                                }
+                                Console.WriteLine();
+                            }
                             break;
                     }
                     
