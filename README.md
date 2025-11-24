@@ -1,8 +1,8 @@
-#Code Quest DLC
+# Code Quest DLC
 
 This activity is an amplification of a previous activity named Code Quest. Here, I expanded the functionalities of the activity, making possible for the mage to upgrade his level, making a better bitcoin diggin system, adding an inventory wich can be filled buying in the new shop added, also you can watch your attacks based in the level of your mage and you can decipher ancient scrolls. All of this was done using arrays, matrix and jagged arrays.
 
-# Chapter 1
+## Chapter 1
 
 **Test case 1: op = 1, name = Adrian**
 
@@ -34,7 +34,7 @@ This activity is an amplification of a previous activity named Code Quest. Here,
 
 ---
 
-# Chapter 2
+## Chapter 2
 
 **Test case 1: op = 2**
 
@@ -49,7 +49,7 @@ This activity is an amplification of a previous activity named Code Quest. Here,
 Limit and error cases are the same as chapter 1
 ---
 
-# Chapter 3
+## Chapter 3
 
 **Test case 1: op = 3, digXAxis = 2,3,4,2,1, digYAxis = 3,4,2,1,4**
 
@@ -88,7 +88,7 @@ Limit and error cases are the same as chapter 1
 | 2 | 5 | 3 | 0 | Random(5,51)=5 | 109 | 0 | 4 | false |
 | 3 | - | 3 | 0 | Random(5,51)=5 | 109 | 0 | 4 | Output = "Your magic card is still integrated. It's time to defeat another dragon!" |
 
-# Chapter 4
+## Chapter 4
 
 **Test case 1: op = 4, inventory = empty**
 
@@ -107,7 +107,7 @@ Limit and error cases are the same as chapter 1
 Error case impossible
 ---
 
-# Chapter 5
+## Chapter 5
 
 **Test case 1: op = 5, bitcoinCounter = 500, itemInput = 1**
 
@@ -134,7 +134,7 @@ Error case impossible
 
 ---
 
-# Chapter 6
+## Chapter 6
 
 **Test case 1: op = 6, level = 2**
 
@@ -147,7 +147,7 @@ Error case impossible
 
 Always be level 1 at least so no error or limit cases
 
-# Chapter 7
+## Chapter 7
 
 **Test case 1: op = 7, scrollDecode = 1**
 
