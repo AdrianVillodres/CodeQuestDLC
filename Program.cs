@@ -18,7 +18,7 @@ namespace CodeQuestDLC
             const string MenuOption6 = "6. Show attacks by level";
             const string MenuOption7 = "7. Decode ancient Scroll";
             const string MenuOptionExit = "0. Exit game";
-            const string MenuPrompt = "Choose an option (1-3) - (0) to exit: ";
+            const string MenuPrompt = "Choose an option (1-7) - (0) to exit: ";
             const string InputErrorMessage = "Invalid input. Please enter a number between 0 and 3.";
             const string IntroductionMessageC1 = "Hey you! You're finally awake. Rise and shine! Its your first day in the academy. You will learn about the arcane arts and alchemy. But first things first, what's your name?";
             const string TrainingMessageC1 = "Alright! Let's go. Before you can go outside the academy, you must train your mind and spells. So you will need to meditate for 5 days. I recommend you do it from 1 to 10 hours, the choice is yours. See you in five days. Good luck!";
@@ -66,6 +66,7 @@ namespace CodeQuestDLC
             const string BitsAvailableMsg = "You have {0} bits available";
             const string ShopExitMsg = "Thanks for coming!";
             const string NotEnoughMoneyMsg = "You don't have enough money to buy that";
+            const string AvailableAttacksMsg = "Available attacks for level {0}:";
 
             string[] enemies = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Giant Spider 🕷️", "Iron Golem 🤖", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
             string[] dices = { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6 };
@@ -95,6 +96,11 @@ namespace CodeQuestDLC
             string ShopObjectTitle = ("Object");
             string ShopPricesTitle = ("Prices(bits)");
             int itemInput;
+            string[] lvl1Attacks = { "Magic Spark 💫" };
+            string[] lvl2Attacks = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" };
+            string[] lvl3Attacks = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" };
+            string[] lvl4Attacks = { "Wave of Light ⚜️", "Storm of Wings 🐦" };
+            string[] lvl5Attacks = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" };
 
             do
             {
@@ -108,6 +114,7 @@ namespace CodeQuestDLC
                 Console.WriteLine(MenuOption3);
                 Console.WriteLine(MenuOption4);
                 Console.WriteLine(MenuOption5);
+                Console.WriteLine(MenuOption6);
                 Console.WriteLine(MenuOptionExit);
                 Console.Write(MenuPrompt);
 
@@ -429,9 +436,47 @@ namespace CodeQuestDLC
                                     Console.WriteLine(ShopError);
                                 }
                             }
-
                                 break;
+                        case 6:
+                            Console.WriteLine();
+                            Console.WriteLine(AvailableAttacksMsg, level);
+                            Console.WriteLine();
+                            switch (level)
+                            {
+                                case 1:
+                                    for(int i = 0; i < lvl1Attacks.GetLength(0); i++)
+                                    {
+                                        Console.WriteLine(lvl1Attacks[i]);
+                                    }
+                                    break;
+                                case 2:
+                                    for (int i = 0; i < lvl2Attacks.GetLength(0); i++)
+                                    {
+                                        Console.WriteLine(lvl2Attacks[i]);
+                                    }
+                                    break;
+                                case 3:
+                                    for (int i = 0; i < lvl3Attacks.GetLength(0); i++)
+                                    {
+                                        Console.WriteLine(lvl3Attacks[i]);
+                                    }
+                                    break;
+                                case 4:
+                                    for (int i = 0; i < lvl4Attacks.GetLength(0); i++)
+                                    {
+                                        Console.WriteLine(lvl4Attacks[i]);
+                                    }
+                                    break;
+                                case 5:
+                                    for (int i = 0; i < lvl5Attacks.GetLength(0); i++)
+                                    {
+                                        Console.WriteLine(lvl5Attacks[i]);
+                                    }
+                                    break;
+                            }
+                            break;
                     }
+                    Console.WriteLine();
                 }
             } while (op != 0);
         }
