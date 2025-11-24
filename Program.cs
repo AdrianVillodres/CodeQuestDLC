@@ -438,7 +438,9 @@ namespace CodeQuestDLC
                             }
                                 break;
                         case 6:
+                            Console.WriteLine();
                             Console.WriteLine(AvailableAttacksMsg, level);
+                            Console.WriteLine();
                             switch (level)
                             {
                                 case 1:
@@ -473,7 +475,9 @@ namespace CodeQuestDLC
                                     break;
                             }
                             break;
+
                     }
+                    Console.WriteLine();
                 }
             } while (op != 0);
         }
