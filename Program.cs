@@ -96,11 +96,14 @@ namespace CodeQuestDLC
             string ShopObjectTitle = ("Object");
             string ShopPricesTitle = ("Prices(bits)");
             int itemInput;
-            string[] lvl1Attacks = { "Magic Spark 💫" };
-            string[] lvl2Attacks = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" };
-            string[] lvl3Attacks = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" };
-            string[] lvl4Attacks = { "Wave of Light ⚜️", "Storm of Wings 🐦" };
-            string[] lvl5Attacks = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" };
+            string[][] attacks = new string[][]
+            {
+                new string[] { "Magic Spark 💫" },
+                new string[] { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" },
+                new string[] { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" },
+                new string[] { "Wave of Light ⚜️", "Storm of Wings 🐦" },
+                new string[] { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }
+            };
 
             do
             {
@@ -441,39 +444,17 @@ namespace CodeQuestDLC
                             Console.WriteLine();
                             Console.WriteLine(AvailableAttacksMsg, level);
                             Console.WriteLine();
-                            switch (level)
+
+                            int index = level - 1;
+
+                            if (index >= 0 && index < attacks.Length)
                             {
-                                case 1:
-                                    for(int i = 0; i < lvl1Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl1Attacks[i]);
-                                    }
-                                    break;
-                                case 2:
-                                    for (int i = 0; i < lvl2Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl2Attacks[i]);
-                                    }
-                                    break;
-                                case 3:
-                                    for (int i = 0; i < lvl3Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl3Attacks[i]);
-                                    }
-                                    break;
-                                case 4:
-                                    for (int i = 0; i < lvl4Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl4Attacks[i]);
-                                    }
-                                    break;
-                                case 5:
-                                    for (int i = 0; i < lvl5Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl5Attacks[i]);
-                                    }
-                                    break;
+                                for (int i = 0; i < attacks[index].Length; i++)
+                                {
+                                    Console.WriteLine(attacks[index][i]);
+                                }
                             }
+                            Console.WriteLine();
                             break;
                     }
                     Console.WriteLine();
