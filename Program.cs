@@ -4,7 +4,6 @@ namespace CodeQuestDLC
 {
     class Program
     {
-        // para la array temporal mas grande crear una array con la lenght the la anterior +1
         static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;
