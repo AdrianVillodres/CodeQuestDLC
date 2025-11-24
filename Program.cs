@@ -109,11 +109,15 @@ namespace CodeQuestDLC
             string ShopObjectTitle = ("Object");
             string ShopPricesTitle = ("Prices(bits)");
             int itemInput;
-            string[] lvl1Attacks = { "Magic Spark 💫" };
-            string[] lvl2Attacks = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" };
-            string[] lvl3Attacks = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" };
-            string[] lvl4Attacks = { "Wave of Light ⚜️", "Storm of Wings 🐦" };
-            string[] lvl5Attacks = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" };
+            string[][] attacks = new string[][]
+            {
+                new string[] { "Magic Spark 💫" },
+                new string[] { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" },
+                new string[] { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" },
+                new string[] { "Wave of Light ⚜️", "Storm of Wings 🐦" },
+                new string[] { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }
+            };
+
             int scrollDecode = 0;
             string firstScrollDecoded;
             int secondScrollDecoded;
