@@ -462,38 +462,15 @@ namespace CodeQuestDLC
                             Console.WriteLine();
                             Console.WriteLine(AvailableAttacksMsg, level);
                             Console.WriteLine();
-                            switch (level)
+
+                            int index = level - 1;
+
+                            if (index >= 0 && index < attacks.Length)
                             {
-                                case 1:
-                                    for(int i = 0; i < lvl1Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl1Attacks[i]);
-                                    }
-                                    break;
-                                case 2:
-                                    for (int i = 0; i < lvl2Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl2Attacks[i]);
-                                    }
-                                    break;
-                                case 3:
-                                    for (int i = 0; i < lvl3Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl3Attacks[i]);
-                                    }
-                                    break;
-                                case 4:
-                                    for (int i = 0; i < lvl4Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl4Attacks[i]);
-                                    }
-                                    break;
-                                case 5:
-                                    for (int i = 0; i < lvl5Attacks.GetLength(0); i++)
-                                    {
-                                        Console.WriteLine(lvl5Attacks[i]);
-                                    }
-                                    break;
+                                for (int i = 0; i < attacks[index].Length; i++)
+                                {
+                                    Console.WriteLine(attacks[index][i]);
+                                }
                             }
                             Console.WriteLine();
                             break;
