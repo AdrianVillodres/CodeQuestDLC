@@ -6,7 +6,7 @@ namespace CodeQuestDLC
         static void Main()
         {
             const string MenuTitle = "===== MAIN MENU - CODEQUEST =====";
-            const string MenuWNameTitile = "===== Welcome {0} the {1} with level {2} =====";
+            const string MenuNameTitle = "===== Welcome {0} the {1} with level {2} =====";
             const string MenuOption1 = "1. Train your wizard";
             const string MenuOption2 = "2. Increase level";
             const string MenuOption3 = "3. Loot the mine";
@@ -33,6 +33,7 @@ namespace CodeQuestDLC
 
             int op = 0;
             int power = 0;
+            int totalpower = 0;
             int randNum;
             bool validInput;
             var rand = new Random();
@@ -45,7 +46,7 @@ namespace CodeQuestDLC
                 Console.WriteLine(MenuTitle);
                 if (playerName.CompareTo("") != 0)
                 {
-                    Console.WriteLine(MenuWNameTitile, playerName, title, level);
+                    Console.WriteLine(MenuNameTitle, playerName, title, level);
                 }
                 Console.WriteLine(MenuOption1);                
                 Console.WriteLine(MenuOptionExit);
@@ -90,8 +91,9 @@ namespace CodeQuestDLC
                             for (int ctr = 0; ctr <= 4; ctr++)
                             {
                                 randNum = rand.Next(1, 25);
-                                power += rand.Next(1, 11);
-                                Console.WriteLine($"Today I meditated for {randNum} hours! My power might increase to {power}!");
+                                power = rand.Next(1, 11);
+                                totalpower += power;
+                                Console.WriteLine($"Today I meditated for {randNum} hours! My power might increase to {power}!, my total power is {totalpower}");
                                 Thread.Sleep(1000);
                             }
                             Console.WriteLine(TrainingCompleteMessageC1);
